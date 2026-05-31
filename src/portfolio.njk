@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: Portfolio
+permalink: /portfolio/
+description: Selected learning design projects.
+---
+<section class="page-intro">
+  <p class="eyebrow">Selected work</p>
+  <h1 class="display">Portfolio</h1>
+  <p class="lede">A few projects I'm proud of. Take a look!</p>
+</section>
+
+<section class="carousel" aria-roledescription="carousel" aria-label="Projects">
+  <button class="carousel-btn carousel-prev" type="button" aria-label="Previous projects">&larr;</button>
+
+  <div class="carousel-track" id="carousel-track" tabindex="0">
+    {%- for project in collections.projects %}
+    <article class="card">
+      <a class="card-link" href="{{ project.url }}">
+        <div class="card-media">
+          <img src="{{ project.data.image }}" alt="" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">{{ project.data.name }}</h2>
+          <p class="card-desc">{{ project.data.description }}</p>
+          <span class="card-cta">View project &rarr;</span>
+        </div>
+      </a>
+    </article>
+    {%- endfor %}
+  </div>
+
+  <button class="carousel-btn carousel-next" type="button" aria-label="Next projects">&rarr;</button>
+</section>
+
+<script src="/js/carousel.js" defer></script>

@@ -1,0 +1,636 @@
+/* ==========================================================================
+   Palette & tokens
+   ========================================================================== */
+:root {
+  --orange: #ff7d00;
+  /* primary   */
+  --teal: #15616d;
+  /* secondary */
+  --cream: #ffecd1;
+  /* background */
+  --ink: #001524;
+  /* deep text */
+  --rust: #78290f;
+  /* accent     */
+
+  --bg: var(--cream);
+  --fg: var(--ink);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --measure: 100%;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --shadow: 0 18px 40px -24px rgba(0, 21, 36, 0.55);
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --space-section: clamp(4rem, 10vw, 8rem);
+}
+
+/* ==========================================================================
+   Reset & base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--fg);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+
+  /* Sticky footer: stack the page full-height so the footer's
+     `margin-top: auto` pushes it to the bottom on short pages. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+/* Grain overlay for an artsy, tactile feel */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.75rem 1rem;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+.site-header,
+main>section,
+.project-page,
+.page-intro,
+.prose,
+.footer-inner,
+.footer-fine {
+  padding-inline: var(--gutter);
+}
+
+main>section,
+.project-page {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: clamp(1.25rem, 3vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.brand-dot {
+  color: var(--orange);
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.25rem);
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nav a:hover {
+  color: var(--rust);
+}
+
+.nav a[aria-current="page"] {
+  border-bottom-color: var(--orange);
+}
+
+/* ==========================================================================
+   Hero (home)
+   ========================================================================== */
+.hero {
+  padding-block: clamp(3rem, 9vw, 7rem) var(--space-section);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 12vw, 8.5rem);
+  line-height: 0.95;
+  max-width: 14ch;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--orange);
+}
+
+.hero-lede {
+  margin-top: 1.75rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  max-width: 42ch;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 100px;
+  border: 2px solid var(--ink);
+  transition: transform 0.18s ease, background 0.18s, color 0.18s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* ==========================================================================
+   Feature grid (home)
+   ========================================================================== */
+.feature-grid {
+  padding-bottom: var(--space-section);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.feature-num {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+}
+
+.feature h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0.5rem 0 0.75rem;
+}
+
+.feature p {
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+  max-width: 34ch;
+}
+
+/* ==========================================================================
+   Page intro (about, portfolio, contact)
+   ========================================================================== */
+.page-intro {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3.5rem);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.display {
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  line-height: 0.98;
+}
+
+.lede {
+  margin-top: 1.5rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  max-width: 48ch;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+}
+
+/* ==========================================================================
+   Prose (markdown pages)
+   ========================================================================== */
+.prose {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-bottom: var(--space-section);
+}
+
+.prose>* {
+  max-width: var(--measure);
+}
+
+.prose h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-top: 1rem;
+  font-size: 1.075rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+}
+
+.prose li {
+  margin-top: 0.4rem;
+}
+
+.prose a {
+  color: var(--rust);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   Carousel (portfolio)
+   ========================================================================== */
+.carousel {
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-bottom: var(--space-section);
+}
+
+.carousel-track {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  padding-inline: var(--gutter);
+  padding-block: 0.5rem 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) transparent;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 100px;
+}
+
+.card {
+  flex: 0 0 min(85%, 360px);
+  scroll-snap-align: start;
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-link:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 55px -28px rgba(0, 21, 36, 0.6);
+}
+
+.card-media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--teal);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-link:hover .card-media img {
+  transform: scale(1.04);
+}
+
+.card-body {
+  padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  color: color-mix(in srgb, var(--ink) 75%, transparent);
+  font-size: 0.98rem;
+}
+
+.card-cta {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--rust);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 38%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.18s, color 0.18s, opacity 0.18s;
+}
+
+.carousel-btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.carousel-prev {
+  left: calc(var(--gutter) - 1.5rem);
+}
+
+.carousel-next {
+  right: calc(var(--gutter) - 1.5rem);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .carousel-btn {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Project page
+   ========================================================================== */
+.project-page {
+  padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section);
+}
+
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 2rem;
+}
+
+.back-link:hover {
+  color: var(--rust);
+}
+
+.project-header {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.embed-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--ink);
+  aspect-ratio: 16 / 9;
+}
+
+.embed-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embed-placeholder {
+  border: 2px dashed color-mix(in srgb, var(--teal) 60%, transparent);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 6vw, 4rem);
+  background: color-mix(in srgb, var(--teal) 8%, var(--cream));
+  text-align: center;
+}
+
+.embed-placeholder-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.muted {
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+}
+
+.project-body {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: 0;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: clamp(3rem, 7vw, 5rem) 2rem;
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+}
+
+.footer-role {
+  color: color-mix(in srgb, var(--cream) 65%, transparent);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 2px;
+}
+
+.footer-links a:hover {
+  color: var(--orange);
+}
+
+.footer-fine {
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--cream) 55%, transparent);
+}
+
+/* ==========================================================================
+   Motion preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
