@@ -1,5 +1,5 @@
 {
   "layout": "layouts/project.njk",
   "tags": "project",
-  "permalink": "/portfolio/{{ page.fileSlug }}/"
+  "permalink": "/my-work/{{ page.fileSlug }}/"
 }
