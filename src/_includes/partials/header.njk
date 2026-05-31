@@ -3,7 +3,7 @@
   <nav class="nav" aria-label="Primary">
     <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
     <a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a>
-    <a href="/my-work/"{% if "/portfolio" in page.url %} aria-current="page"{% endif %}>Portfolio</a>
+    <a href="/my-work/"{% if "/my-work" in page.url %} aria-current="page"{% endif %}>Portfolio</a>
     <a href="/contact/"{% if page.url == "/contact/" %} aria-current="page"{% endif %}>Contact</a>
   </nav>
 </header>
