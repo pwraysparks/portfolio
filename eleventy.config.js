@@ -1,4 +1,7 @@
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   // Copy static assets through to the build untouched.
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
@@ -20,6 +23,7 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: "/portfolio/",
     dir: {
       input: "src",
       output: "_site",
