@@ -6,7 +6,8 @@
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "build-ghpages": "npx @11ty/eleventy --pathprefix=/portfolio/"
   },
   "license": "MIT",
   "devDependencies": {
