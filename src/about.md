@@ -7,6 +7,10 @@ permalink: /about/
 description: A bit about me and how I approach learning design.
 ---
 
+
+<img class="about-me-selfie" src="/assets/images/phoebe.png"/>
+
+
 ## My Career
 
 **I bring a creative and inclusive approach to any project**:
@@ -16,6 +20,7 @@ description: A bit about me and how I approach learning design.
 - **My Skillset.** Creating accessible and inclusive learning for a worldwide audience; managing the project lifecycle from scoping to sign-off. Authoring inductions, internal processes, compliance and software training for regulated industries. Creating content for face-to-face, e-learning and blended learning experiences using adult learning theory. Experimenting with AI tools for efficiency, while also adding a human flair with illustration and graphic design.
 
 - **My Toolkit.** Articulate Storyline, Rise, Camtasia, Adobe Creative Cloud (Photoshop and Illustrator), Microsoft Office, Procreate
+
 
 ## What I care about
 

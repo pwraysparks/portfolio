@@ -621,6 +621,19 @@ code {
   color: color-mix(in srgb, var(--cream) 55%, transparent);
 }
 
+.about-me-selfie {
+  max-width: 400px;
+  display: block;
+  float: right;
+}
+
+@media (max-width: 640px) {
+  .about-me-selfie {
+    display: inline;
+    float: none;
+  }
+}
+
 /* ==========================================================================
    Motion preferences
    ========================================================================== */
