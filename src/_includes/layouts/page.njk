@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 ---
 <section class="page-intro">
+  {% if portrait %}<img class="floating-portrait" src="{{ portrait }}" width="2048" height="2048" alt="{{ portraitAlt }}" />{% endif %}
   {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
   <h1 class="display">{{ title }}</h1>
   {% if lede %}<p class="lede">{{ lede }}</p>{% endif %}

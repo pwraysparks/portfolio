@@ -5,11 +5,9 @@ eyebrow: Hello!
 lede: Learning Designer . E-Learning Developer . Creative
 permalink: /about/
 description: A bit about me and how I approach learning design.
+portrait: /assets/images/phoebe.png
+portraitAlt: Illustrated portrait of Phoebe, making a peace sign with one hand.
 ---
-
-
-<img class="about-me-selfie" src="/assets/images/phoebe.png"/>
-
 
 ## My Career
 
